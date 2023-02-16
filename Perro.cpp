@@ -1,68 +1,57 @@
 #include "Perro.h"
 #include <iostream>
 
+Perro::Perro(int id, int edad, string nombre, string raza, string tamanio, string color)
+        : id(id), edad(edad), nombre(nombre), raza(raza), tamanio(tamanio), color(color) {}
 
-// Ejemplo de constructor por defecto iniciando los atributos en el cuerpo del constructor
-Perro::Perro() {
-    this->id = 0;
-    this->edad = 0;
-    this->raza = "";
-    this->tamanio = "";
-    this->color = "";
+Perro::~Perro() {
+    cout << this->getNombre() <<" ya no está en el refugio" << endl;
 }
-
-Perro::Perro(int id, int edad, std::string nombre, std::string raza, std::string tamanio,
-             std::string color) : id(id), edad(edad), nombre(nombre), raza(raza), tamanio(tamanio), color(color) {}
-
-Perro::Perro(int id, std::string nombre, std::string raza, std::string color) : nombre(nombre), raza(raza),
-                                                                                             color(color) {}
-
 
 void Perro::ladrar() {
-    std::cout << "Guau Guau" << std::endl;
+    cout << "Guau Guau, mi nombre es " << this->nombre << endl;
 }
 
+int Perro::getId() {
+    return this->id;
+}
 
 int Perro::getEdad() {
-    return edad;
+    return this->edad;
 }
 
 void Perro::setEdad(int edad) {
     this->edad = edad;
 }
 
-std::string Perro::getRaza() {
-    return raza;
+string Perro::getNombre() {
+    return this->nombre;
 }
 
-void Perro::setRaza(std::string raza) {
-    this->raza = raza;
-}
-
-std::string Perro::getTamanio() {
-    return tamanio;
-}
-
-void Perro::setTamanio(std::string tamanio) {
-    this->tamanio = tamanio;
-}
-
-std::string Perro::getNombre() {
-    return nombre;
-}
-
-void Perro::setNombre(std::string nombre) {
+void Perro::setNombre(string nombre) {
     this->nombre = nombre;
 }
 
-std::string Perro::getColor() {
-    return color;
+string Perro::getRaza() {
+    return this->raza;
 }
 
-void Perro::setColor(std::string color) {
+void Perro::setRaza(string raza) {
+    this->raza = raza;
+}
+
+string Perro::getTamanio() {
+    return this->tamanio;
+}
+
+void Perro::setTamanio(string tamanio) {
+    this->tamanio = tamanio;
+}
+
+string Perro::getColor() {
+    return this->color;
+}
+
+void Perro::setColor(string color) {
     this->color = color;
 }
-
-
-
-

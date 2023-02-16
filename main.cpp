@@ -8,49 +8,54 @@ using std::cin;
 using std::string;
 using std::getline;
 
-void mostrarMenu(Refugio * refugio)
-{
+void primeraOpcion(Refugio* refugio) {
+    string nombreTemp, razaTemp, tamanioTemp, colorTemp;
+    int idTemp, edadTemp;
+    cout << "Ingresa el id del perro " << endl;
+    cin >> idTemp;
+    cout << "Ingresa la edad del perro " << endl;
+    cin >> edadTemp;
+    cout << "Ingresa el nombre del perro " << endl;
+    cin.ignore();
+    getline(cin, nombreTemp, '\n');
+    cout << "Ingresa la raza del perro " << endl;
+    cin.ignore();
+    getline(cin, razaTemp, '\n');
+    cout << "Ingresa el tamanio del perro " << endl;
+    cin >> tamanioTemp;
+    cout << "Ingresa el color del perro " << endl;
+    cin >> colorTemp;
+    refugio->recibirPerro(idTemp, edadTemp, nombreTemp, razaTemp, tamanioTemp, colorTemp);
+}
+
+void mostrarMenu(Refugio* refugio) {
     int opc = 0;
     do
     {
-        cout << "\n ****Bienvenidos ****\n";
-        cout << "1. Agregar perro  al vector \n";
-        cout << "2. Mostrar perros  \n";
-        cout << "-1. Salir \n";
+        cout << "\n**** Bienvenidos al refugio - " << refugio->getNombre() << " ****\n";
+        cout << "1. Registrar un nuevo perro\n";
+        cout << "2. Mostrar todos los perros disponibles\n";
+        cout << "0. Salir\n" << endl;
 
         cin >> opc;
 
         switch (opc)
         {
-            case 1: {
-                string nombrePerroTemp, colorTemp, razaTemp;
-                int idPerro;
-                cout << "Ingresa el id del perro " << endl;
-                cin >> idPerro;
-                cout << "Ingresa el nombre del perro " << endl;
-                cin.ignore();
-                getline(cin, nombrePerroTemp, '\n');
-                cout << "Ingresa el color del perro " << endl;
-                cin >> colorTemp;
-                cout << "Ingresa la raza del perro " << endl;
-                cin >> razaTemp;
-                refugio->agregarPerro(idPerro, nombrePerroTemp, colorTemp, razaTemp);
+            case 1: primeraOpcion(refugio);
                 break;
-            }
             case 2: refugio->mostrarPerros();
                 break;
             default:
                 break;
         }
-    } while (opc != -1);
+    } while (opc != 0);
 }
 
-
 int main() {
-
-    // Instanciar el Refugio - Puede estar en el stack pq es una variable que será local al main
-    Refugio * pRefugio= new Refugio("Mi guarida feliz");
+    Refugio* pRefugio= new Refugio("Mi mascota feliz");
     mostrarMenu(pRefugio);
+
+    // Debo usar el delete explicitamente cuando tengo objetos creados en el heap, ya que estos no se eliminan automáticamente.
     delete pRefugio;
     return 0;
 }

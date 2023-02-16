@@ -12,8 +12,10 @@
   Para el caso del mapa no ordenado la llave será el id del Perro y el valor un apuntador a la clase Perro.
 * Agrege una funcion en el main que pida los datos básicos del perro y llame al método que creó en el punto anterior de la clase Refugio para agregar el nuevo perro en el mapa no ordenado y en el vector
 * Agrege un método en la clase Refugio para mostrar los Perros que están disponibles. A manera de ejercicio use este método para mostrar tanto los perros que estan en el Vector como los que están en el mapa. Cada colección requiere su propio ciclo. 
-* Agrege un método en la clase Refugio que retorne True si dado un id de Perro que se recibe por parámetro el perro se encuentra en el Vector y False en caso contrario. 
-* Agrege un método en la clase Refugio para eliminar un Perro del mapa dado el Id si el perro se encuentra en el mapa no ordenado. Note cómo es mucho más sencillo identificar si un elemento se encuentra o no en una colección cuando se usan mapas.
+* Modifique el código para que el ID sea un contador que se asigna automáticamente. Tenga en cuenta que no es necesario modificarlo cuando se eliminan perros.
+* Agrege un método en la clase Refugio que retorne True si dado un id de Perro que se recibe por parámetro el perro se encuentra en el Vector y False en caso contrario.
+* Agrege un método en la clase Refugio que permita listar todos los Perros en el Vector que tengan una edad mayor a la recibida por parámetro.
+* Agrege un método en la clase Refugio para eliminar un Perro (darlo en adopción) del mapa dado el Id si el perro se encuentra en el mapa no ordenado. Note cómo es mucho más sencillo identificar si un elemento se encuentra o no en una colección cuando se usan mapas.
 * Agregue las opciones del menu en el main para probar todas las funcionalidades
 
 

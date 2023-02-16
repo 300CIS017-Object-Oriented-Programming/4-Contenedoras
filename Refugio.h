@@ -1,7 +1,3 @@
-//
-// Created by lufe0 on 14/02/2023.
-//
-
 #ifndef INC_4_CONTENEDORAS_REFUGIO_H
 #define INC_4_CONTENEDORAS_REFUGIO_H
 
@@ -11,30 +7,29 @@
 #include <unordered_map>
 #include "Perro.h"
 
-using std::unordered_map;
-using std:: make_pair;
-using std::vector;
-using std::iterator;
 using std::string;
 using std::cout;
 using std::endl;
-
+using std::vector;
+using std::unordered_map;
+using std::make_pair;
+using std::iterator;
 
 class Refugio {
+private:
     string nombre;
     vector<Perro*> bdPerros;
     unordered_map<int, Perro*> mapaPerros;
-
 public:
-    Refugio(std::string nombre);
-    void agregarPerro(int idPerros, string nombre, string color, string raza);
+    Refugio() = default;
+    Refugio(string nombre);
+    ~Refugio();
+
+    void recibirPerro(int id, int edad, string nombre, string raza, string tamanio, string color);
     void mostrarPerros();
 
-    std::string getNombre();
-
-    void setNombre(std::string nombre);
-
+    string getNombre();
+    void setNombre(string nombre);
 };
 
-
-#endif //INC_4_CONTENEDORAS_REFUGIO_H
+#endif

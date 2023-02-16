@@ -1,56 +1,64 @@
-//
-// Created by lufe0 on 14/02/2023.
-//
-
 #include "Refugio.h"
 
-Refugio::Refugio(std::string nombre) : nombre(nombre) {
+Refugio::Refugio(string nombre) : nombre(nombre) {}
+
+Refugio::~Refugio() {
+    // Recorremos el vector para eliminar los objetos. No sería necesario recorrer el map ya que se almacenaban los
+    // mismos objetos y la referencia ya no existiría.
+    for (int indexVector = 0; indexVector < this->bdPerros.size(); indexVector++) {
+        delete this->bdPerros[indexVector];
+    }
+
+    cout << "\n¡Gracias por visitarnos!" << endl;
 }
 
-void Refugio::agregarPerro(int idPerro, std::string nombre, std::string color, std::string raza) {
+void Refugio::recibirPerro(int id, int edad, string nombre, string raza, string tamanio, string color) {
+    // Creo el objeto perro que voy a pasar a mi contenedor.
+    Perro* pPerroTemp = new Perro(id, edad, nombre, raza, tamanio, color); // Creado en el heap
 
-    Perro * pPerroTemp = new Perro(idPerro, nombre, color, raza); // Heap
+    // Agregar el objeto al final de un vector.
+    this->bdPerros.push_back(pPerroTemp);
 
-    // Agrega el perro en el vector y en el mapa
-    bdPerros.push_back(pPerroTemp);
-
-    mapaPerros[idPerro] = pPerroTemp;
-    mapaPerros.insert(make_pair(idPerro, pPerroTemp));
+    // Agregar el objeto a un map de dos formas: Definiendo manualmente la llave o creando un par llave + referencia.
+    //this->mapaPerros[id] = pPerroTemp;
+    this->mapaPerros.insert(make_pair(id, pPerroTemp));
 }
 
 void Refugio::mostrarPerros() {
-    vector <Perro*> :: iterator it;
-    unordered_map <int, Perro*> :: iterator itMap;
-    for  (it = bdPerros.begin(); it != bdPerros.end(); ++it ){
-            Perro * pPerroTemp = *it;
-            cout << pPerroTemp->getNombre() << endl;
-    }
+    vector<Perro*>::iterator itVector;
+    unordered_map<int, Perro*>::iterator itMap;
 
-    for (auto pPerro: bdPerros){
-        cout << pPerro->getNombre() << endl;
-    }
-
-    while (it!=bdPerros.end()){
-        Perro * pPerroTemp = *it;
+    cout << "Los perros en el refugio son:\n";
+    cout << "\nVECTOR\n";
+    for (itVector = this->bdPerros.begin(); itVector != this->bdPerros.end(); ++itVector){
+        Perro* pPerroTemp = *itVector;
         cout << pPerroTemp->getNombre() << endl;
-        ++it;
+
+        // Opción con menor uso de memoria
+        //cout << (*itVector)->getNombre() << endl;
     }
 
-    for  (itMap = mapaPerros.begin(); itMap != mapaPerros.end(); ++itMap ){
-         int llave = itMap->first;
-         Perro * pPerroTemp = itMap->second;
-        cout << "El perro de id " << llave << "Se llama " << pPerroTemp->getNombre() << endl;
-        cout << "El perro de id " << itMap->first << "Se llama " << itMap->second->getNombre() << endl;
+    // Otra forma de acceder a los elementos de un vector sin usar iterator, manejando directamente el índice.
+    /*for (int indexVector = 0; indexVector < this->bdPerros.size(); indexVector++) {
+        Perro * pPerroTemp = this->bdPerros[indexVector];
+        cout << pPerroTemp->getNombre() << endl;
+    }*/
+
+    cout << "\nMAP\n";
+    for (itMap = this->mapaPerros.begin(); itMap != this->mapaPerros.end(); ++itMap){
+        int llave = itMap->first;
+        Perro* pPerroTemp = itMap->second;
+        cout << "El perro de id " << llave << ", se llama " << pPerroTemp->getNombre() << endl;
+
+        // Opción con menor uso de memoria
+        //cout << "El perro de id " << itMap->first << ", se llama " << itMap->second->getNombre() << endl;
     }
 }
 
-
-std::string Refugio::getNombre() {
-    return nombre;
+string Refugio::getNombre() {
+    return this->nombre;
 }
 
-void Refugio::setNombre(std::string nombre) {
+void Refugio::setNombre(string nombre) {
     this->nombre = nombre;
 }
-
-

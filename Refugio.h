@@ -18,6 +18,7 @@ using std::iterator;
 class Refugio {
 private:
     string nombre;
+    int acumPerros;
     vector<Perro*> bdPerros;
     unordered_map<int, Perro*> mapaPerros;
 public:
@@ -25,9 +26,13 @@ public:
     Refugio(string nombre);
     ~Refugio();
 
-    void recibirPerro(int id, int edad, string nombre, string raza, string tamanio, string color);
+    void recibirPerro(int edad, string nombre, string raza, string tamanio, string color);
     void mostrarPerros();
+    bool buscarPerro(int id);
+    void listarPerrosPorEdad(int edad);
+    void darPerroEnAdopcion(int id);
 
+    int getAcumPerros();
     string getNombre();
     void setNombre(string nombre);
 };

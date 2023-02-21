@@ -10,9 +10,7 @@ using std::getline;
 
 void primeraOpcion(Refugio* refugio) {
     string nombreTemp, razaTemp, tamanioTemp, colorTemp;
-    int idTemp, edadTemp;
-    cout << "Ingresa el id del perro " << endl;
-    cin >> idTemp;
+    int edadTemp;
     cout << "Ingresa la edad del perro " << endl;
     cin >> edadTemp;
     cout << "Ingresa el nombre del perro " << endl;
@@ -25,7 +23,28 @@ void primeraOpcion(Refugio* refugio) {
     cin >> tamanioTemp;
     cout << "Ingresa el color del perro " << endl;
     cin >> colorTemp;
-    refugio->recibirPerro(idTemp, edadTemp, nombreTemp, razaTemp, tamanioTemp, colorTemp);
+    refugio->recibirPerro(edadTemp, nombreTemp, razaTemp, tamanioTemp, colorTemp);
+}
+
+void terceraOpcion(Refugio* refugio) {
+    int idPerro;
+    cout << "Ingresa el ID del perro " << endl;
+    cin >> idPerro;
+    cout << refugio->buscarPerro(idPerro) << endl;
+}
+
+void cuartaOpcion(Refugio* refugio) {
+    int edadPerros;
+    cout << "Ingresa la edad de los perros a buscar " << endl;
+    cin >> edadPerros;
+    refugio->listarPerrosPorEdad(edadPerros);
+}
+
+void quintaOpcion(Refugio* refugio) {
+    int idPerro;
+    cout << "Ingresa el ID del perro a borrar " << endl;
+    cin >> idPerro;
+    refugio->darPerroEnAdopcion(idPerro);
 }
 
 void mostrarMenu(Refugio* refugio) {
@@ -35,15 +54,29 @@ void mostrarMenu(Refugio* refugio) {
         cout << "\n**** Bienvenidos al refugio - " << refugio->getNombre() << " ****\n";
         cout << "1. Registrar un nuevo perro\n";
         cout << "2. Mostrar todos los perros disponibles\n";
+        cout << "3. Buscar un perro\n";
+        cout << "4. Listar perros por edad\n";
+        cout << "5. Dar un perro en adopcion\n";
         cout << "0. Salir\n" << endl;
 
         cin >> opc;
 
         switch (opc)
         {
-            case 1: primeraOpcion(refugio);
+            case 1:
+                primeraOpcion(refugio);
                 break;
-            case 2: refugio->mostrarPerros();
+            case 2:
+                refugio->mostrarPerros();
+                break;
+            case 3:
+                terceraOpcion(refugio);
+                break;
+            case 4:
+                cuartaOpcion(refugio);
+                break;
+            case 5:
+                quintaOpcion(refugio);
                 break;
             default:
                 break;

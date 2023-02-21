@@ -1,6 +1,6 @@
 #include "Refugio.h"
 
-Refugio::Refugio(string nombre) : nombre(nombre) {}
+Refugio::Refugio(string nombre) : acumPerros(1), nombre(nombre) {}
 
 Refugio::~Refugio() {
     // Recorremos el vector para eliminar los objetos. No sería necesario recorrer el map ya que se almacenaban los
@@ -12,16 +12,18 @@ Refugio::~Refugio() {
     cout << "\n¡Gracias por visitarnos!" << endl;
 }
 
-void Refugio::recibirPerro(int id, int edad, string nombre, string raza, string tamanio, string color) {
+void Refugio::recibirPerro(int edad, string nombre, string raza, string tamanio, string color) {
     // Creo el objeto perro que voy a pasar a mi contenedor.
-    Perro* pPerroTemp = new Perro(id, edad, nombre, raza, tamanio, color); // Creado en el heap
+    Perro* pPerroTemp = new Perro(this->acumPerros, edad, nombre, raza, tamanio, color); // Creado en el heap
 
     // Agregar el objeto al final de un vector.
     this->bdPerros.push_back(pPerroTemp);
 
     // Agregar el objeto a un map de dos formas: Definiendo manualmente la llave o creando un par llave + referencia.
     //this->mapaPerros[id] = pPerroTemp;
-    this->mapaPerros.insert(make_pair(id, pPerroTemp));
+    this->mapaPerros.insert(make_pair(this->acumPerros, pPerroTemp));
+
+    this->acumPerros++;
 }
 
 void Refugio::mostrarPerros() {
@@ -53,6 +55,35 @@ void Refugio::mostrarPerros() {
         // Opción con menor uso de memoria
         //cout << "El perro de id " << itMap->first << ", se llama " << itMap->second->getNombre() << endl;
     }
+}
+
+bool Refugio::buscarPerro(int id) {
+    vector<Perro*>::iterator itVector;
+
+    for (itVector = this->bdPerros.begin(); itVector != this->bdPerros.end(); ++itVector){
+        if ((*itVector)->getId() == id) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void Refugio::listarPerrosPorEdad(int edad) {
+    // Otra forma de acceder a los elementos de un vector sin usar iterator, manejando directamente el índice.
+    for (int indexVector = 0; indexVector < this->bdPerros.size(); indexVector++) {
+        if (this->bdPerros[indexVector]->getEdad() > edad) {
+            cout << this->bdPerros[indexVector]->getNombre() << " es mayor a " << edad << " anios" << endl;
+        }
+    }
+}
+
+void Refugio::darPerroEnAdopcion(int id) {
+    this->mapaPerros.erase(id);
+}
+
+int Refugio::getAcumPerros() {
+    return this->acumPerros;
 }
 
 string Refugio::getNombre() {

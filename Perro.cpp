@@ -8,6 +8,7 @@ Perro::~Perro() {
     cout << this->getNombre() <<" ya no está en el refugio" << endl;
 }
 
+// TO DO: modificar para que la info sea retornada y el main la pueda mostrar por consola.
 void Perro::ladrar() {
     cout << "Guau Guau, mi nombre es " << this->nombre << endl;
 }

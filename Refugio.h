@@ -22,9 +22,10 @@ private:
     vector<Perro*> bdPerros;
     unordered_map<int, Perro*> mapaPerros;
 public:
-    Refugio() = default;
-    Refugio(string nombre);
+    Refugio()= default;
     ~Refugio();
+    Refugio(string nombre);
+
 
     void recibirPerro(int edad, string nombre, string raza, string tamanio, string color);
     void mostrarPerros();

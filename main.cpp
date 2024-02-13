@@ -9,42 +9,19 @@ using std::string;
 using std::getline;
 
 void primeraOpcion(Refugio* refugio) {
-    string nombreTemp, razaTemp, tamanioTemp, colorTemp;
-    int edadTemp;
-    cout << "Ingresa la edad del perro " << endl;
-    cin >> edadTemp;
-    cout << "Ingresa el nombre del perro " << endl;
-    cin.ignore();
-    getline(cin, nombreTemp, '\n');
-    cout << "Ingresa la raza del perro " << endl;
-    cin.ignore();
-    getline(cin, razaTemp, '\n');
-    cout << "Ingresa el tamanio del perro " << endl;
-    cin >> tamanioTemp;
-    cout << "Ingresa el color del perro " << endl;
-    cin >> colorTemp;
-    refugio->recibirPerro(edadTemp, nombreTemp, razaTemp, tamanioTemp, colorTemp);
+    // TO DO
 }
 
 void terceraOpcion(Refugio* refugio) {
-    int idPerro;
-    cout << "Ingresa el ID del perro " << endl;
-    cin >> idPerro;
-    cout << refugio->buscarPerro(idPerro) << endl;
+    // TO DO
 }
 
 void cuartaOpcion(Refugio* refugio) {
-    int edadPerros;
-    cout << "Ingresa la edad de los perros a buscar " << endl;
-    cin >> edadPerros;
-    refugio->listarPerrosPorEdad(edadPerros);
+    // TO DO
 }
 
 void quintaOpcion(Refugio* refugio) {
-    int idPerro;
-    cout << "Ingresa el ID del perro a borrar " << endl;
-    cin >> idPerro;
-    refugio->darPerroEnAdopcion(idPerro);
+    // TO DO
 }
 
 void mostrarMenu(Refugio* refugio) {
